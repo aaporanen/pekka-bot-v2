@@ -62,8 +62,8 @@ const send420 = schedule.scheduleJob(rule420, async () => {
 });
 
 const rule10minleft = new schedule.RecurrenceRule();
-rule10minleft.hour = 17;
-rule10minleft.minute = 6;
+rule10minleft.hour = 20;
+rule10minleft.minute = 50;
 rule10minleft.tz = 'Europe/Helsinki';
 
 const send10minleft = schedule.scheduleJob(rule10minleft, async () => {

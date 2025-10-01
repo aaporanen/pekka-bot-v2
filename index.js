@@ -14,6 +14,7 @@ const smokeweedeveryday = require("./commands/smokeweedeveryday");
 const dontsmokeweedeveryday = require("./commands/dontsmokeweedeveryday");
 const tenminuteson = require("./commands/tenminuteson");
 const tenminutesoff = require("./commands/tenminutesoff");
+const uptime = require("./commands/uptime");
 
 client.commands = new Collection();
 client.commands.set(iliveagain.data.name, iliveagain);
@@ -21,6 +22,7 @@ client.commands.set(smokeweedeveryday.data.name, smokeweedeveryday);
 client.commands.set(dontsmokeweedeveryday.data.name, dontsmokeweedeveryday);
 client.commands.set(tenminuteson.data.name, tenminuteson);
 client.commands.set(tenminutesoff.data.name, tenminutesoff);
+client.commands.set(uptime.data.name, uptime);
 
 
 client.once(Events.ClientReady, readyClient => {
@@ -29,7 +31,7 @@ client.once(Events.ClientReady, readyClient => {
 
 client.on(Events.InteractionCreate, async interaction => {
     if (!interaction.isChatInputCommand()) return;
-    
+
     const command = interaction.client.commands.get(interaction.commandName);
 
 	if (!command) {

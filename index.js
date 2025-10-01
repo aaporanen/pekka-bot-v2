@@ -91,11 +91,11 @@ const sendTGIF = schedule.scheduleJob(ruleTGIF, async () => {
 });
 
 const ruleIndependence = new schedule.RecurrenceRule();
-independenceRule.month = 11;
-independenceRule.date = 6;
-independenceRule.hour = 12;
-independenceRule.minute = 0;
-independenceRule.tz = 'Europe/Helsinki';
+ruleIndependence.month = 11;
+ruleIndependence.date = 6;
+ruleIndependence.hour = 12;
+ruleIndependence.minute = 0;
+ruleIndependence.tz = 'Europe/Helsinki';
 
 const sendIndependence = schedule.scheduleJob(ruleIndependence, async () => {
     holidayChannels.forEach(id => {

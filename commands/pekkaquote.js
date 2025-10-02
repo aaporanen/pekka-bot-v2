@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, AttachmentBuilder, EmbedBuilder  } = require('discord.js');
-const quotes = require('./quotes.js');
+const quotes = require('../quotes');
 
 function getRandomInteger(min, max) {
   return Math.floor(Math.random() * (max - min) ) + min;

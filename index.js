@@ -10,6 +10,7 @@ const smokeWeedChannelIds = require("./420channels");
 const tenMinutesChannelIds = require("./10minuteschannels");
 const tgifChannels = require("./tgifchannels");
 const holidayChannels = require("./holidaychannels");
+const fridayRaffleChannels = require("./fridayrafflechannels");
 
 const iliveagain = require("./commands/iliveagain");
 const smokeweedeveryday = require("./commands/smokeweedeveryday");
@@ -18,6 +19,9 @@ const tenminuteson = require("./commands/tenminuteson");
 const tenminutesoff = require("./commands/tenminutesoff");
 const uptime = require("./commands/uptime");
 const pekkaquote = require("./commands/pekkaquote");
+const { getRandomInteger } = require('./utils');
+const fridayraffleon = require('./commands/fridayraffleon');
+const fridayraffleoff = require('./commands/fridayraffleoff');
 
 client.commands = new Collection();
 client.commands.set(iliveagain.data.name, iliveagain);
@@ -27,6 +31,8 @@ client.commands.set(tenminuteson.data.name, tenminuteson);
 client.commands.set(tenminutesoff.data.name, tenminutesoff);
 client.commands.set(uptime.data.name, uptime);
 client.commands.set(pekkaquote.data.name, pekkaquote);
+client.commands.set(fridayraffleon.data.name, fridayraffleon);
+client.commands.set(fridayraffleoff.data.name, fridayraffleoff);
 
 client.once(Events.ClientReady, readyClient => {
     console.log(`Ready. Logged in as ${readyClient.user.tag}`);
@@ -78,19 +84,6 @@ const send10minleft = schedule.scheduleJob(rule10minleft, async () => {
     });
 });
 
-const ruleTGIF = new schedule.RecurrenceRule();
-ruleTGIF.dayOfWeek = 5;
-ruleTGIF.hour = 15;
-ruleTGIF.minute = 0;
-ruleTGIF.tz = 'Europe/Helsinki';
-
-const sendTGIF = schedule.scheduleJob(ruleTGIF, async () => {
-    tgifChannels.forEach(id => {
-        const channel = client.channels.cache.get(id);
-        channel.send("Onneksi on perjantai.");
-    });
-});
-
 const ruleIndependence = new schedule.RecurrenceRule();
 ruleIndependence.month = 11;
 ruleIndependence.date = 6;
@@ -116,6 +109,26 @@ const sendChristmas = schedule.scheduleJob(ruleChristmas, async () => {
     holidayChannels.forEach(id => {
         const channel = client.channels.cache.get(id);
         channel.send("Hyvää joulua.");
+    });
+});
+
+const ruleFridayGambina = new schedule.RecurrenceRule();
+ruleFridayGambina.hour = 23;
+ruleFridayGambina.minute = 43;
+ruleFridayGambina.tz = 'Europe/Helsinki';
+
+const fridayRaffle = schedule.scheduleJob(ruleFridayGambina, async () => {
+	fridayRaffleChannels.forEach(id => {
+        const channel = client.channels.cache.get(id);
+		const users = channel.guild.members.list();
+		const winner = users[getRandomInteger(0, users.length)];
+
+        const file = new AttachmentBuilder(`./images/gambina.png`);
+		const embed = new EmbedBuilder()
+		.setTitle(winner.displayName)
+		.setDescription(`Perjantai-Gambinan arvonta: Onneksi olkoon ${winner.displayName}. Voitit pullon gambinaa. Voit käydä hakemassa sen alkosta omalla rahalla.`)
+		.setImage('attachment://gambina.png')
+		channel.reply({ embeds: [embed], files: [file] });
     });
 });
 

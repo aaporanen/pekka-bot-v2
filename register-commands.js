@@ -7,6 +7,8 @@ const tenminuteson = require('./commands/tenminuteson');
 const tenminutesoff = require('./commands/tenminutesoff');
 const uptime = require('./commands/uptime');
 const pekkaquote = require('./commands/pekkaquote');
+const fridayraffleon = require('./commands/fridayraffleon');
+const fridayraffleoff = require('./commands/fridayraffleoff');
 
 const rest = new REST().setToken(process.env.DISCORD_TOKEN);
 
@@ -16,7 +18,7 @@ const rest = new REST().setToken(process.env.DISCORD_TOKEN);
 		// The put method is used to fully refresh all commands in the guild with the current set
 		const data = await rest.put(
 			Routes.applicationCommands(process.env.APP_ID),
-			{ body: [iliveagain.data, smokeweedeveryday.data, dontsmokeweedeveryday.data, tenminuteson.data, tenminutesoff.data, uptime.data, pekkaquote.data] },
+			{ body: [iliveagain.data, smokeweedeveryday.data, dontsmokeweedeveryday.data, tenminuteson.data, tenminutesoff.data, uptime.data, pekkaquote.data, ] },
 		);
 
 		console.log(`Successfully reloaded ${data.length} application (/) commands.`);

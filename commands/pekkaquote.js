@@ -1,7 +1,7 @@
 const { SlashCommandBuilder, AttachmentBuilder, EmbedBuilder  } = require('discord.js');
 const quotes = require('../quotes');
 
-function getRandomInteger(min, max) {
+const getRandomInteger = (min, max) => {
   return Math.floor(Math.random() * (max - min) ) + min;
 }
 
@@ -10,7 +10,7 @@ const getRandomImage = () => {
 }
 
 const getRandomQuote = () => {
-    const quote = quotes[Math.floor(Math.random() * quotes.length)];
+    const quote = quotes[getRandomInteger(0, quotes.length)];
     return quote;
 }
 

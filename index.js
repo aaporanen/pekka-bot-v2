@@ -114,7 +114,7 @@ const sendChristmas = schedule.scheduleJob(ruleChristmas, async () => {
 
 const ruleFridayGambina = new schedule.RecurrenceRule();
 ruleFridayGambina.hour = 23;
-ruleFridayGambina.minute = 43;
+ruleFridayGambina.minute = 46;
 ruleFridayGambina.tz = 'Europe/Helsinki';
 
 const fridayRaffle = schedule.scheduleJob(ruleFridayGambina, async () => {

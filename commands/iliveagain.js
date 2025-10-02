@@ -1,10 +1,12 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, AttachmentBuilder, EmbedBuilder  } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
     .setName("johtaja")
     .setDescription("johtaja"),
     async execute(interaction) {
-        await interaction.reply("I live... again.");
+        const file = new AttachmentBuilder('./resources/2841611.jpg');
+        const embed = new EmbedBuilder().setTitle("I live... again.").setImage('attachment://2841611.jpg')
+        await interaction.reply({ embeds: [embed], files: [file] });
     }
 }

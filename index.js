@@ -1,7 +1,7 @@
 require('dotenv/config');
 const token = process.env.DISCORD_TOKEN;
 
-const { Client, Collection, Events, GatewayIntentBits, MessageFlags } = require('discord.js');
+const { Client, Collection, Events, GatewayIntentBits, MessageFlags, AttachmentBuilder, EmbedBuilder } = require('discord.js');
 
 const schedule = require("node-schedule");
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
@@ -114,7 +114,7 @@ const sendChristmas = schedule.scheduleJob(ruleChristmas, async () => {
 
 const ruleFridayGambina = new schedule.RecurrenceRule();
 ruleFridayGambina.hour = 0;
-ruleFridayGambina.minute = 5;
+ruleFridayGambina.minute = 8;
 ruleFridayGambina.tz = 'Europe/Helsinki';
 
 const fridayRaffle = schedule.scheduleJob(ruleFridayGambina, async () => {

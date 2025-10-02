@@ -113,15 +113,15 @@ const sendChristmas = schedule.scheduleJob(ruleChristmas, async () => {
 });
 
 const ruleFridayGambina = new schedule.RecurrenceRule();
-ruleFridayGambina.hour = 23;
-ruleFridayGambina.minute = 58;
+ruleFridayGambina.hour = 0;
+ruleFridayGambina.minute = 2;
 ruleFridayGambina.tz = 'Europe/Helsinki';
 
 const fridayRaffle = schedule.scheduleJob(ruleFridayGambina, async () => {
 	fridayRaffleChannels.forEach(id => {
         const channel = client.channels.cache.get(id);
 		console.log(channel);
-		const users = channel.members.list();
+		const users = channel.guild.members.list();
 		const winner = users[getRandomInteger(0, users.length)];
 
         const file = new AttachmentBuilder(`./images/gambina.png`);

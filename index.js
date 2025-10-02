@@ -17,6 +17,7 @@ const dontsmokeweedeveryday = require("./commands/dontsmokeweedeveryday");
 const tenminuteson = require("./commands/tenminuteson");
 const tenminutesoff = require("./commands/tenminutesoff");
 const uptime = require("./commands/uptime");
+const pekkaquote = require("./commands/pekkaquote");
 
 client.commands = new Collection();
 client.commands.set(iliveagain.data.name, iliveagain);
@@ -25,7 +26,7 @@ client.commands.set(dontsmokeweedeveryday.data.name, dontsmokeweedeveryday);
 client.commands.set(tenminuteson.data.name, tenminuteson);
 client.commands.set(tenminutesoff.data.name, tenminutesoff);
 client.commands.set(uptime.data.name, uptime);
-
+client.commands.set(pekkaquote.data.name, pekkaquote);
 
 client.once(Events.ClientReady, readyClient => {
     console.log(`Ready. Logged in as ${readyClient.user.tag}`);

@@ -5,8 +5,8 @@ module.exports = {
     .setName("johtaja")
     .setDescription("johtaja"),
     async execute(interaction) {
-        const file = new AttachmentBuilder('./resources/2841611.jpg');
-        const embed = new EmbedBuilder().setTitle("Tervehdys.").setImage('attachment://2841611.jpg')
+        const file = new AttachmentBuilder(`./images/pekka8.png`);
+        const embed = new EmbedBuilder().setTitle("Tervehdys.").setImage('attachment://pekka8.png')
         await interaction.reply({ embeds: [embed], files: [file] });
     }
 }

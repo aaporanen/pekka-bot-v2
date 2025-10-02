@@ -117,7 +117,7 @@ ruleFridayGambina.hour = 0;
 ruleFridayGambina.minute = 8;
 ruleFridayGambina.tz = 'Europe/Helsinki';
 
-const fridayRaffle = schedule.scheduleJob(ruleFridayGambina, async () => {
+/*const fridayRaffle = schedule.scheduleJob(ruleFridayGambina, async () => {
 	fridayRaffleChannels.forEach(id => {
         const channel = client.channels.cache.get(id);
 		const users = channel.members;
@@ -130,6 +130,6 @@ const fridayRaffle = schedule.scheduleJob(ruleFridayGambina, async () => {
 		.setImage('attachment://gambina.png')
 		channel.reply({ embeds: [embed], files: [file] });
     });
-});
+});*/
 
 client.login(token);

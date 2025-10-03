@@ -115,7 +115,7 @@ const sendChristmas = schedule.scheduleJob(ruleChristmas, async () => {
 const ruleTGIF = new schedule.RecurrenceRule();
 ruleTGIF.dayOfWeek = 5;
 ruleTGIF.hour = 15;
-ruleTGIF.hour = 0;
+ruleTGIF.minute = 0;
 ruleTGIF.tz = 'Europe/Helsinki';
 
 const sendTGIF = schedule.scheduleJob(ruleTGIF, async () => {

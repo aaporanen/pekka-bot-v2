@@ -112,10 +112,23 @@ const sendChristmas = schedule.scheduleJob(ruleChristmas, async () => {
     });
 });
 
-const ruleFridayGambina = new schedule.RecurrenceRule();
-ruleFridayGambina.hour = 0;
-ruleFridayGambina.minute = 8;
-ruleFridayGambina.tz = 'Europe/Helsinki';
+const ruleTGIF = new schedule.RecurrenceRule();
+ruleTGIF.dayOfWeek = 5;
+ruleTGIF.hour = 15;
+ruleTGIF.hour = 0;
+ruleTGIF.tz = 'Europe/Helsinki';
+
+const sendTGIF = schedule.scheduleJob(ruleTGIF, async () => {
+    tgifChannels.forEach(id => {
+        const channel = client.channels.cache.get(id);
+        channel.send("Onneksi on perjantai.");
+    });
+});
+
+//const ruleFridayGambina = new schedule.RecurrenceRule();
+//ruleFridayGambina.hour = 0;
+//ruleFridayGambina.minute = 8;
+//ruleFridayGambina.tz = 'Europe/Helsinki';
 
 /*const fridayRaffle = schedule.scheduleJob(ruleFridayGambina, async () => {
 	fridayRaffleChannels.forEach(id => {

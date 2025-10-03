@@ -121,7 +121,7 @@ ruleTGIF.tz = 'Europe/Helsinki';
 const sendTGIF = schedule.scheduleJob(ruleTGIF, async () => {
     tgifChannels.forEach(id => {
         const channel = client.channels.cache.get(id);
-        channel.send("Onneksi on perjantai.");
+        channel.send("Luojam kiitos omm beriantai");
     });
 });
 

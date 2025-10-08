@@ -1,7 +1,7 @@
 require('dotenv/config');
 const token = process.env.DISCORD_TOKEN;
 
-const { Client, Collection, Events, GatewayIntentBits, MessageFlags, AttachmentBuilder, EmbedBuilder } = require('discord.js');
+const { Client, Collection, Events, GatewayIntentBits, MessageFlags, AttachmentBuilder, EmbedBuilder, bold } = require('discord.js');
 
 const schedule = require("node-schedule");
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
@@ -19,7 +19,6 @@ const tenminuteson = require("./commands/tenminuteson");
 const tenminutesoff = require("./commands/tenminutesoff");
 const uptime = require("./commands/uptime");
 const pekkaquote = require("./commands/pekkaquote");
-const { getRandomInteger } = require('./utils');
 const fridayraffleon = require('./commands/fridayraffleon');
 const fridayraffleoff = require('./commands/fridayraffleoff');
 
@@ -127,18 +126,18 @@ const sendTGIF = schedule.scheduleJob(ruleTGIF, async () => {
 
 const ruleFridayGambina = new schedule.RecurrenceRule();
 ruleFridayGambina.hour = 16;
-ruleFridayGambina.minute = 46;
+ruleFridayGambina.minute = 55;
 ruleFridayGambina.tz = 'Europe/Helsinki';
 
 const fridayRaffle = schedule.scheduleJob(ruleFridayGambina, async () => {
 	fridayRaffleChannels.forEach(id => {
         const channel = client.channels.cache.get(id);
 		const winner = channel.members.random();
-
+        const boldWinnerName = bold(winner.displayName);
         const file = new AttachmentBuilder(`./images/gambina.png`);
 		const embed = new EmbedBuilder()
-		.setTitle(winner.displayName)
-		.setDescription(`Perjantai-Gambinan arvonta: Onneksi olkoon ${winner.displayName}.`)
+		.setTitle(`Perjantai-Gambinan arvonta`)
+		.setDescription(`Onneksi olkoon voitosta: ${boldWinnerName}!`)
 		.setImage('attachment://gambina.png')
 		channel.send({ embeds: [embed], files: [file] });
     });

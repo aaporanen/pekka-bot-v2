@@ -125,24 +125,24 @@ const sendTGIF = schedule.scheduleJob(ruleTGIF, async () => {
     });
 });
 
-//const ruleFridayGambina = new schedule.RecurrenceRule();
-//ruleFridayGambina.hour = 0;
-//ruleFridayGambina.minute = 8;
-//ruleFridayGambina.tz = 'Europe/Helsinki';
+const ruleFridayGambina = new schedule.RecurrenceRule();
+ruleFridayGambina.hour = 16;
+ruleFridayGambina.minute = 36;
+ruleFridayGambina.tz = 'Europe/Helsinki';
 
-/*const fridayRaffle = schedule.scheduleJob(ruleFridayGambina, async () => {
+const fridayRaffle = schedule.scheduleJob(ruleFridayGambina, async () => {
 	fridayRaffleChannels.forEach(id => {
         const channel = client.channels.cache.get(id);
-		const users = channel.members;
-		const winner = users[getRandomInteger(0, users.length)];
+		const winner = channel.members.cache.random();
 
         const file = new AttachmentBuilder(`./images/gambina.png`);
 		const embed = new EmbedBuilder()
 		.setTitle(winner.displayName)
-		.setDescription(`Perjantai-Gambinan arvonta: Onneksi olkoon ${winner.displayName}. Voitit pullon gambinaa. Voit käydä hakemassa sen alkosta omalla rahalla.`)
+		.setDescription(`Perjantai-Gambinan arvonta: Onneksi olkoon ${winner.displayName}.`)
 		.setImage('attachment://gambina.png')
 		channel.reply({ embeds: [embed], files: [file] });
     });
-});*/
+});
+
 
 client.login(token);

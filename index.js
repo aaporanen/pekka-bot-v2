@@ -127,13 +127,13 @@ const sendTGIF = schedule.scheduleJob(ruleTGIF, async () => {
 
 const ruleFridayGambina = new schedule.RecurrenceRule();
 ruleFridayGambina.hour = 16;
-ruleFridayGambina.minute = 40;
+ruleFridayGambina.minute = 43;
 ruleFridayGambina.tz = 'Europe/Helsinki';
 
 const fridayRaffle = schedule.scheduleJob(ruleFridayGambina, async () => {
 	fridayRaffleChannels.forEach(id => {
         const channel = client.channels.cache.get(id);
-		const winner = channel.members.cache.random();
+		const winner = channel.members.random();
 
         const file = new AttachmentBuilder(`./images/gambina.png`);
 		const embed = new EmbedBuilder()

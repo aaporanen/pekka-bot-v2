@@ -127,7 +127,7 @@ const sendTGIF = schedule.scheduleJob(ruleTGIF, async () => {
 
 const ruleFridayGambina = new schedule.RecurrenceRule();
 ruleFridayGambina.hour = 16;
-ruleFridayGambina.minute = 43;
+ruleFridayGambina.minute = 46;
 ruleFridayGambina.tz = 'Europe/Helsinki';
 
 const fridayRaffle = schedule.scheduleJob(ruleFridayGambina, async () => {
@@ -140,7 +140,7 @@ const fridayRaffle = schedule.scheduleJob(ruleFridayGambina, async () => {
 		.setTitle(winner.displayName)
 		.setDescription(`Perjantai-Gambinan arvonta: Onneksi olkoon ${winner.displayName}.`)
 		.setImage('attachment://gambina.png')
-		channel.reply({ embeds: [embed], files: [file] });
+		channel.send({ embeds: [embed], files: [file] });
     });
 });
 

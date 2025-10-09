@@ -129,7 +129,7 @@ const sendTGIF = schedule.scheduleJob(ruleTGIF, async () => {
 
 const ruleFridayGambina = new schedule.RecurrenceRule();
 ruleFridayGambina.hour = 18;
-ruleFridayGambina.minute = 0;
+ruleFridayGambina.minute = 2;
 //ruleFridayGambina.dayOfWeek = 5;
 ruleFridayGambina.tz = 'Europe/Helsinki';
 
@@ -154,7 +154,7 @@ const fridayRaffle = schedule.scheduleJob(ruleFridayGambina, async () => {
 		const winner = channel.members.random();
         const boldWinnerName = bold(winner.displayName);
         
-        const prize = rafflePrizes[utils.randomInteger(0, rafflePrizes.length)];
+        const prize = rafflePrizes[utils.getRandomInteger(0, rafflePrizes.length)];
         const file = new AttachmentBuilder(prize.image);
 		const embed = new EmbedBuilder()
 		.setTitle(`Perjantaipullon arvonta`)

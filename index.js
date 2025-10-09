@@ -129,22 +129,22 @@ const sendTGIF = schedule.scheduleJob(ruleTGIF, async () => {
 
 const ruleFridayGambina = new schedule.RecurrenceRule();
 ruleFridayGambina.hour = 18;
-ruleFridayGambina.minute = 2;
+ruleFridayGambina.minute = 8;
 //ruleFridayGambina.dayOfWeek = 5;
 ruleFridayGambina.tz = 'Europe/Helsinki';
 
 const rafflePrizes = [
             {
                 name: "pullon Gambinaa",
-                image: `./images/perjantai1.png`,
+                image: `perjantai1.png`,
             },
             {
                 name: "100-päkin",
-                image: `./images/perjantai2.png`,
+                image: `perjantai2.png`,
             },
             {
                 name: "1000-päkin",
-                image: `./images/perjantai3.png`,
+                image: `perjantai3.png`,
             },
         ];
 
@@ -155,11 +155,11 @@ const fridayRaffle = schedule.scheduleJob(ruleFridayGambina, async () => {
         const boldWinnerName = bold(winner.displayName);
         
         const prize = rafflePrizes[utils.getRandomInteger(0, rafflePrizes.length)];
-        const file = new AttachmentBuilder(prize.image);
+        const file = new AttachmentBuilder(`./images/${prize.image}`);
 		const embed = new EmbedBuilder()
 		.setTitle(`Perjantaipullon arvonta`)
 		.setDescription(`Onneksi olkoon voitosta: ${boldWinnerName}! Voitit ${prize.name}.`)
-		.setImage('attachment://gambina.png')
+		.setImage(`attachment://${prize.image}`)
 		channel.send({ embeds: [embed], files: [file] });
     });
 });

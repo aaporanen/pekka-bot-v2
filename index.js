@@ -21,7 +21,7 @@ const uptime = require("./commands/uptime");
 const pekkaquote = require("./commands/pekkaquote");
 const fridayraffleon = require('./commands/fridayraffleon');
 const fridayraffleoff = require('./commands/fridayraffleoff');
-const utils = requre('./utils');
+const utils = require('./utils');
 
 client.commands = new Collection();
 client.commands.set(iliveagain.data.name, iliveagain);

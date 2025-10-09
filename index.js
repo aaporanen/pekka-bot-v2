@@ -21,6 +21,7 @@ const uptime = require("./commands/uptime");
 const pekkaquote = require("./commands/pekkaquote");
 const fridayraffleon = require('./commands/fridayraffleon');
 const fridayraffleoff = require('./commands/fridayraffleoff');
+const utils = requre('./utils');
 
 client.commands = new Collection();
 client.commands.set(iliveagain.data.name, iliveagain);
@@ -128,19 +129,36 @@ const sendTGIF = schedule.scheduleJob(ruleTGIF, async () => {
 
 const ruleFridayGambina = new schedule.RecurrenceRule();
 ruleFridayGambina.hour = 17;
-ruleFridayGambina.minute = 0;
-ruleFridayGambina.dayOfWeek = 5;
+ruleFridayGambina.minute = 56;
+//ruleFridayGambina.dayOfWeek = 5;
 ruleFridayGambina.tz = 'Europe/Helsinki';
+
+const rafflePrizes = [
+            {
+                name: "pullon Gambinaa",
+                image: `./images/perjantai1.png`,
+            },
+            {
+                name: "100-päkin",
+                image: `./images/perjantai2.png`,
+            },
+            {
+                name: "1000-päkin",
+                image: `./images/perjantai3.png`,
+            },
+        ];
 
 const fridayRaffle = schedule.scheduleJob(ruleFridayGambina, async () => {
 	fridayRaffleChannels.forEach(id => {
         const channel = client.channels.cache.get(id);
 		const winner = channel.members.random();
         const boldWinnerName = bold(winner.displayName);
-        const file = new AttachmentBuilder(`./images/gambina.png`);
+        
+        const prize = rafflePrizes[utils.randomInteger(0, rafflePrizes.length)];
+        const file = new AttachmentBuilder(prize.image);
 		const embed = new EmbedBuilder()
-		.setTitle(`Perjantai-Gambinan arvonta`)
-		.setDescription(`Onneksi olkoon voitosta: ${boldWinnerName}!`)
+		.setTitle(`Perjantaipullon arvonta`)
+		.setDescription(`Onneksi olkoon voitosta: ${boldWinnerName}! Voitit ${prize.name}.`)
 		.setImage('attachment://gambina.png')
 		channel.send({ embeds: [embed], files: [file] });
     });

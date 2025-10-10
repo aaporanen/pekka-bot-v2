@@ -129,7 +129,7 @@ const sendTGIF = schedule.scheduleJob(ruleTGIF, async () => {
 
 const ruleFridayGambina = new schedule.RecurrenceRule();
 ruleFridayGambina.hour = 17;
-ruleFridayGambina.minute = 0;
+ruleFridayGambina.minute = 30;
 ruleFridayGambina.dayOfWeek = 5;
 ruleFridayGambina.tz = 'Europe/Helsinki';
 

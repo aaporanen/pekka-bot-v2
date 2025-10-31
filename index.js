@@ -38,14 +38,6 @@ client.once(Events.ClientReady, readyClient => {
     console.log(`Ready. Logged in as ${readyClient.user.tag}`);
 });
 
-client.on(Events.MessageCreate, async interaction => {
-    console.log("message create triggered");
-    console.log(interaction.mentions);
-    if (interaction.mentions.has(client.user.id)) {
-        interaction.reply("Älä puhu paskaa.");
-    }
-});
-
 client.on(Events.InteractionCreate, async interaction => {
     if (!interaction.isChatInputCommand()) return;
 

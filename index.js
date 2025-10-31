@@ -39,6 +39,8 @@ client.once(Events.ClientReady, readyClient => {
 });
 
 client.on(Events.MessageCreate, async interaction => {
+    console.log("message create triggered");
+    console.log(interaction.mentions);
     if (interaction.mentions.has(client.user.id)) {
         interaction.reply("Älä puhu paskaa.");
     }

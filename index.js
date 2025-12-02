@@ -1,7 +1,7 @@
 require('dotenv/config');
 const token = process.env.DISCORD_TOKEN;
 
-const { Client, Collection, Events, GatewayIntentBits, MessageFlags, AttachmentBuilder, EmbedBuilder, bold } = require('discord.js');
+const { Client, Collection, Events, GatewayIntentBits, MessageFlags, AttachmentBuilder, EmbedBuilder, bold, GuildChannel } = require('discord.js');
 
 const schedule = require("node-schedule");
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
@@ -168,8 +168,8 @@ const ruleTestRng = new schedule.RecurrenceRule();
 ruleTestRng.second = 59;
 ruleTestRng.tz = 'Europe/Helsinki';
 const testRng = schedule.scheduleJob(ruleTestRng, async () => {
-	fridayRaffleChannels.forEach(id => {
-        const channel = client.channels.cache.get(id);
+	fridayRaffleChannels.forEach(async id => {
+        const channel = await client.channels.fetch(id, { cache: false, force: true });
 		const winner = channel.members.random();
         console.log(winner);
         console.log(channel.members);

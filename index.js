@@ -169,12 +169,11 @@ const ruleTestRng = new schedule.RecurrenceRule();
 ruleTestRng.second = 59;
 ruleTestRng.tz = 'Europe/Helsinki';
 const testRng = schedule.scheduleJob(ruleTestRng, async () => {
-	fridayRaffleChannels.forEach(async id => {
-        const channel = await client.channels.fetch(id, { force: true });
+	fridayRaffleChannels.forEach(id => {
+        const channel = client.channels.cache.get(id);
         const memberCount = channel.guild.memberCount;
         console.log("memberCount:", memberCount);
-        const members = await channel.guild.members.list();
-        console.log("members:", members);
+        channel.guild.members.list().then(_ => console.log("memberdata:", _));
     });
 });
 

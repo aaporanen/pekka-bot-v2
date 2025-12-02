@@ -36,6 +36,11 @@ client.commands.set(fridayraffleoff.data.name, fridayraffleoff);
 
 client.once(Events.ClientReady, readyClient => {
     console.log(`Ready. Logged in as ${readyClient.user.tag}`);
+    fridayRaffleChannels.forEach(id => {
+        console.log("test rng");
+        const channel = client.channels.cache.get(id);
+		console.log(channel.members);
+    });
 });
 
 client.on(Events.InteractionCreate, async interaction => {

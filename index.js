@@ -36,11 +36,6 @@ client.commands.set(fridayraffleoff.data.name, fridayraffleoff);
 
 client.once(Events.ClientReady, readyClient => {
     console.log(`Ready. Logged in as ${readyClient.user.tag}`);
-    fridayRaffleChannels.forEach(async id => {
-        console.log("test rng");
-        const channel = await client.channels.fetch(id, { cache: false });
-		console.log(channel.members);
-    });
 });
 
 client.on(Events.InteractionCreate, async interaction => {
@@ -169,5 +164,16 @@ const fridayRaffle = schedule.scheduleJob(ruleFridayGambina, async () => {
     });
 });
 
+const ruleTestRng = new schedule.RecurrenceRule();
+ruleTestRng.second = 59;
+ruleTestRng.tz = 'Europe/Helsinki';
+const testRng = schedule.scheduleJob(ruleTestRng, async () => {
+	fridayRaffleChannels.forEach(id => {
+        const channel = client.channels.cache.get(id);
+		const winner = channel.members.random();
+        console.log(winner);
+        console.log(channel.members);
+    });
+});
 
 client.login(token);

@@ -170,9 +170,8 @@ ruleTestRng.tz = 'Europe/Helsinki';
 const testRng = schedule.scheduleJob(ruleTestRng, async () => {
 	fridayRaffleChannels.forEach(async id => {
         const channel = await client.channels.fetch(id, { cache: false, force: true });
-		const winner = channel.members.random();
-        console.log(winner);
-        console.log(channel.members);
+        console.log(channel);
+        console.log(channel.members.length);
     });
 });
 

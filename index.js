@@ -164,20 +164,17 @@ const fridayRaffle = schedule.scheduleJob(ruleFridayGambina, async () => {
     });
 });
 */
-/*
+
 const ruleTestRng = new schedule.RecurrenceRule();
 ruleTestRng.second = 59;
 ruleTestRng.tz = 'Europe/Helsinki';
 const testRng = schedule.scheduleJob(ruleTestRng, async () => {
 	fridayRaffleChannels.forEach(id => {
         const channel = client.channels.cache.get(id);
-        const memberCount = channel.guild.memberCount;
-        console.log("memberCount:", memberCount);
-        channel.guild.members.fetch()
-        .then(console.log)
-        .catch(console.error);
+        console.log("memberCount:", channel.guild.memberCount);
+        console.log("randomMember:", channel.guild.members.cache.random());
     });
 });
-*/
+
 
 client.login(token);

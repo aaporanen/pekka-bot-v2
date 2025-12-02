@@ -164,7 +164,7 @@ const fridayRaffle = schedule.scheduleJob(ruleFridayGambina, async () => {
     });
 });
 */
-
+/*
 const ruleTestRng = new schedule.RecurrenceRule();
 ruleTestRng.second = 59;
 ruleTestRng.tz = 'Europe/Helsinki';
@@ -178,6 +178,6 @@ const testRng = schedule.scheduleJob(ruleTestRng, async () => {
         .catch(console.error);
     });
 });
-
+*/
 
 client.login(token);

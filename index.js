@@ -174,7 +174,7 @@ const testRng = schedule.scheduleJob(ruleTestRng, async () => {
         const memberCount = channel.guild.memberCount;
         console.log("memberCount:", memberCount);
         const members = await channel.guild.members.list();
-        console.log("members:", members.map(_ => _.displayName));
+        console.log("members:", members);
     });
 });
 

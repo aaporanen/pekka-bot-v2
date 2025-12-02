@@ -126,7 +126,7 @@ const sendTGIF = schedule.scheduleJob(ruleTGIF, async () => {
     });
 });
 */
-
+/*
 const ruleFridayGambina = new schedule.RecurrenceRule();
 ruleFridayGambina.hour = 17;
 ruleFridayGambina.minute = 30;
@@ -163,7 +163,8 @@ const fridayRaffle = schedule.scheduleJob(ruleFridayGambina, async () => {
 		channel.send({ embeds: [embed], files: [file] });
     });
 });
-
+*/
+/*
 const ruleTestRng = new schedule.RecurrenceRule();
 ruleTestRng.second = 59;
 ruleTestRng.tz = 'Europe/Helsinki';
@@ -176,5 +177,6 @@ const testRng = schedule.scheduleJob(ruleTestRng, async () => {
         console.log("members:", members.map(_ => _.displayName));
     });
 });
+*/
 
 client.login(token);

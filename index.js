@@ -173,7 +173,9 @@ const testRng = schedule.scheduleJob(ruleTestRng, async () => {
         const channel = client.channels.cache.get(id);
         const memberCount = channel.guild.memberCount;
         console.log("memberCount:", memberCount);
-        channel.guild.members.list().then(_ => console.log("memberdata:", _));
+        channel.guild.members.fetch()
+        .then(console.log)
+        .catch(console.error);
     });
 });
 
